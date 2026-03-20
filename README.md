@@ -22,9 +22,8 @@
 
 <br>
 
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20Now-00f5ff?style=for-the-badge&labelColor=0d1117)](https://deepfake-scanner.onrender.com)
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Visit%20Now-00f5ff?style=for-the-badge&labelColor=0d1117)](https://kansal0920-deepfake-scanner.hf.space)
 [![GitHub Repo](https://img.shields.io/badge/⭐%20GitHub-Star%20Repo-ff006e?style=for-the-badge&labelColor=0d1117)](https://github.com/BhavyaKansal20/DeepFake-Detector)
-[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Space-FFD21E?style=for-the-badge&labelColor=0d1117)](https://huggingface.co/spaces/BhavyaKansal20/deepfake-scanner)
 
 <br>
 
