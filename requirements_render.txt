@@ -1,0 +1,14 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.9.0+cpu
+torchvision==0.21.0+cpu
+timm==1.0.25
+streamlit==1.55.0
+plotly==6.6.0
+numpy==1.26.4
+pillow==10.2.0
+albumentations==2.0.8
+librosa==0.11.0
+soundfile==0.13.1
+scikit-learn==1.4.0
+loguru==0.7.3
+PyYAML==6.0.1

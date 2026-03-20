@@ -1,0 +1,136 @@
+api:
+  allowed_audio_types:
+  - .wav
+  - .mp3
+  - .flac
+  - .ogg
+  - .m4a
+  allowed_image_types:
+  - .jpg
+  - .jpeg
+  - .png
+  - .webp
+  - .bmp
+  allowed_video_types:
+  - .mp4
+  - .avi
+  - .mov
+  - .mkv
+  - .webm
+  host: 0.0.0.0
+  max_upload_size_mb: 500
+  port: 8000
+  timeout: 120
+  workers: 4
+audio_model:
+  dataset:
+    kaggle_path: awsaf49/asvpoof-2019-dataset
+    name: ASVspoof2021
+    test_split: 0.1
+    train_split: 0.8
+    val_split: 0.1
+  hop_length: 160
+  lcnn_channels:
+  - 32
+  - 64
+  - 64
+  - 128
+  - 128
+  max_duration: 10
+  n_fft: 512
+  n_mfcc: 40
+  num_classes: 2
+  sample_rate: 16000
+  train:
+    batch_size: 16
+    early_stopping_patience: 5
+    epochs: 15
+    lr: 2.0e-05
+    mixed_precision: true
+    scheduler: linear_warmup
+    warmup_steps: 500
+    weight_decay: 0.0001
+  wav2vec_model: facebook/wav2vec2-base
+fusion:
+  confidence_levels:
+    high: 0.85
+    low: 0.5
+    medium: 0.65
+  strategy: weighted_average
+  threshold: 0.5
+  weights:
+    audio: 0.25
+    image: 0.35
+    video: 0.4
+image_model:
+  architecture: efficientnet_b4
+  augmentation:
+    brightness_contrast: true
+    gaussian_noise: true
+    horizontal_flip: true
+    jpeg_compression: true
+    rotation_limit: 15
+  dataset:
+    kaggle_path: xhlulu/140k-real-and-fake-faces
+    name: 140k_real_fake_faces
+    test_split: 0.1
+    train_split: 0.8
+    val_split: 0.1
+  dropout: 0.4
+  input_size: 299
+  num_classes: 2
+  pretrained: true
+  train:
+    batch_size: 16
+    early_stopping_patience: 7
+    epochs: 15
+    lr: 0.0001
+    mixed_precision: true
+    scheduler: cosine
+    warmup_epochs: 3
+    weight_decay: 1.0e-05
+paths:
+  audio: data/raw/audio/KAGGLE/AUDIO
+  audio_csv: data/raw/audio/KAGGLE/DATASET-balanced.csv
+  data_root: data
+  faces: data/raw/images/real_vs_fake
+  frames: data/processed/frames
+  logs: logs
+  models: models
+  processed: data/processed
+  raw: data/raw
+  results: results
+project:
+  name: DeepfakeDetector
+  seed: 42
+  version: 1.0.0
+video_model:
+  cnn_backbone: efficientnet_b4
+  dataset:
+    compression: c23
+    methods:
+    - Deepfakes
+    - Face2Face
+    - FaceSwap
+    - NeuralTextures
+    name: FaceForensics++
+    test_split: 0.15
+    train_split: 0.7
+    val_split: 0.15
+  dropout: 0.5
+  frame_size: 224
+  frames_per_clip: 32
+  lstm_hidden: 512
+  lstm_layers: 2
+  num_classes: 2
+  pretrained: true
+  train:
+    batch_size: 8
+    early_stopping_patience: 5
+    epochs: 25
+    gradient_clip: 1.0
+    lr: 5.0e-05
+    mixed_precision: true
+    scheduler: cosine_warmup
+    warmup_epochs: 2
+    weight_decay: 1.0e-05

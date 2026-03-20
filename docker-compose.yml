@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  # ─── Main App (API + UI) ───────────────────────────────────────────────────
+  deepfake-detector:
+    build: .
+    container_name: deepfake-detector
+    ports:
+      - "8000:8000"    # FastAPI
+      - "8501:8501"    # Streamlit
+    volumes:
+      - ./models:/app/models          # persist trained models
+      - ./data:/app/data              # datasets
+      - ./logs:/app/logs              # logs
+    environment:
+      - CONFIG_PATH=/app/configs/config.yaml
+      - MODELS_DIR=/app/models
+      - CUDA_VISIBLE_DEVICES=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ─── Optional: Nginx reverse proxy ────────────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: deepfake-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - deepfake-detector
+    restart: unless-stopped
+    profiles:
+      - production   # only starts with: docker-compose --profile production up
+
+volumes:
+  models_data:
+  logs_data:

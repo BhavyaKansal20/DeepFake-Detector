@@ -1,0 +1,60 @@
+2026-03-16 02:15:32 | INFO | helpers:89 | Logger initialised → logs/audio_wavefake.log
+2026-03-16 02:15:32 | INFO | helpers:53 | Global seed set to 42
+2026-03-16 02:15:32 | INFO | helpers:67 | Using Apple Silicon MPS
+2026-03-16 02:15:32 | INFO | train_audio_wavefake:117 | Loading CSV: data/raw/audio/KAGGLE/DATASET-balanced.csv
+2026-03-16 02:15:32 | INFO | train_audio_wavefake:124 | Samples: 11778 | Features: 26 | Real=5889 Fake=5889
+2026-03-16 02:15:36 | INFO | train_audio_wavefake:160 | Epoch 001/050 | Loss=0.3382 | ValAcc=0.9728 ValAUC=0.9984
+2026-03-16 02:15:36 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=0.9984
+2026-03-16 02:15:36 | INFO | train_audio_wavefake:160 | Epoch 002/050 | Loss=0.2058 | ValAcc=0.9898 ValAUC=0.9995
+2026-03-16 02:15:36 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=0.9995
+2026-03-16 02:15:37 | INFO | train_audio_wavefake:160 | Epoch 003/050 | Loss=0.1811 | ValAcc=0.9924 ValAUC=0.9998
+2026-03-16 02:15:37 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=0.9998
+2026-03-16 02:15:37 | INFO | train_audio_wavefake:160 | Epoch 004/050 | Loss=0.1707 | ValAcc=0.9949 ValAUC=0.9999
+2026-03-16 02:15:37 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=0.9999
+2026-03-16 02:15:37 | INFO | train_audio_wavefake:160 | Epoch 005/050 | Loss=0.1632 | ValAcc=0.9958 ValAUC=0.9999
+2026-03-16 02:15:37 | INFO | train_audio_wavefake:160 | Epoch 006/050 | Loss=0.1575 | ValAcc=0.9958 ValAUC=0.9999
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:160 | Epoch 007/050 | Loss=0.1518 | ValAcc=0.9966 ValAUC=0.9999
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:160 | Epoch 008/050 | Loss=0.1493 | ValAcc=0.9975 ValAUC=0.9999
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=0.9999
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:160 | Epoch 009/050 | Loss=0.1467 | ValAcc=0.9958 ValAUC=0.9999
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:160 | Epoch 010/050 | Loss=0.1437 | ValAcc=0.9966 ValAUC=1.0000
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=1.0000
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:160 | Epoch 011/050 | Loss=0.1430 | ValAcc=0.9966 ValAUC=1.0000
+2026-03-16 02:15:38 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=1.0000
+2026-03-16 02:15:39 | INFO | train_audio_wavefake:160 | Epoch 012/050 | Loss=0.1419 | ValAcc=0.9966 ValAUC=1.0000
+2026-03-16 02:15:39 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=1.0000
+2026-03-16 02:15:39 | INFO | train_audio_wavefake:160 | Epoch 013/050 | Loss=0.1385 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:39 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=1.0000
+2026-03-16 02:15:39 | INFO | train_audio_wavefake:160 | Epoch 014/050 | Loss=0.1371 | ValAcc=0.9983 ValAUC=1.0000
+2026-03-16 02:15:39 | INFO | train_audio_wavefake:160 | Epoch 015/050 | Loss=0.1378 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:40 | INFO | train_audio_wavefake:160 | Epoch 016/050 | Loss=0.1371 | ValAcc=0.9966 ValAUC=1.0000
+2026-03-16 02:15:40 | INFO | train_audio_wavefake:160 | Epoch 017/050 | Loss=0.1367 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:40 | INFO | train_audio_wavefake:160 | Epoch 018/050 | Loss=0.1344 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:40 | INFO | train_audio_wavefake:160 | Epoch 019/050 | Loss=0.1353 | ValAcc=0.9992 ValAUC=1.0000
+2026-03-16 02:15:40 | INFO | train_audio_wavefake:160 | Epoch 020/050 | Loss=0.1340 | ValAcc=0.9983 ValAUC=1.0000
+2026-03-16 02:15:41 | INFO | train_audio_wavefake:166 |   ✅ Best model saved — AUC=1.0000
+2026-03-16 02:15:41 | INFO | train_audio_wavefake:160 | Epoch 021/050 | Loss=0.1327 | ValAcc=0.9983 ValAUC=0.9999
+2026-03-16 02:15:41 | INFO | train_audio_wavefake:160 | Epoch 022/050 | Loss=0.1317 | ValAcc=0.9983 ValAUC=1.0000
+2026-03-16 02:15:41 | INFO | train_audio_wavefake:160 | Epoch 023/050 | Loss=0.1307 | ValAcc=0.9983 ValAUC=1.0000
+2026-03-16 02:15:41 | INFO | train_audio_wavefake:160 | Epoch 024/050 | Loss=0.1298 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:42 | INFO | train_audio_wavefake:160 | Epoch 025/050 | Loss=0.1315 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:42 | INFO | train_audio_wavefake:160 | Epoch 026/050 | Loss=0.1317 | ValAcc=0.9983 ValAUC=1.0000
+2026-03-16 02:15:42 | INFO | train_audio_wavefake:160 | Epoch 027/050 | Loss=0.1302 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:42 | INFO | train_audio_wavefake:160 | Epoch 028/050 | Loss=0.1296 | ValAcc=0.9983 ValAUC=1.0000
+2026-03-16 02:15:42 | INFO | train_audio_wavefake:160 | Epoch 029/050 | Loss=0.1305 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:43 | INFO | train_audio_wavefake:160 | Epoch 030/050 | Loss=0.1303 | ValAcc=0.9975 ValAUC=1.0000
+2026-03-16 02:15:43 | INFO | train_audio_wavefake:169 | Early stopping
+2026-03-16 02:15:43 | INFO | train_audio_wavefake:170 | 
+Best Val AUC: 1.0000
+2026-03-16 02:15:43 | INFO | train_audio_wavefake:178 | 
+TEST  Accuracy=0.9958  AUC=0.9999
+2026-03-16 02:15:43 | INFO | train_audio_wavefake:179 | 
+              precision    recall  f1-score   support
+
+        REAL       0.99      1.00      1.00       589
+        FAKE       1.00      0.99      1.00       589
+
+    accuracy                           1.00      1178
+   macro avg       1.00      1.00      1.00      1178
+weighted avg       1.00      1.00      1.00      1178
+
