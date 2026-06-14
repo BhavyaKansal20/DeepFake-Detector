@@ -3,13 +3,30 @@ ui/app.py — Glassmorphism Dark Neon Deepfake Detector UI
 Run: streamlit run ui/app.py
 """
 
-import os, io, time, tempfile
+import sys, os, io, time, tempfile
 from pathlib import Path
 import streamlit as st
 import plotly.graph_objects as go
 import requests
 
 API_URL = os.environ.get("API_URL", "http://localhost:8000")
+
+# ── Dynamic API Auto-Start for Streamlit Community Cloud / Serverless ────────
+if "localhost" in API_URL or "127.0.0.1" in API_URL:
+    try:
+        requests.get(f"{API_URL}/health", timeout=1)
+    except Exception:
+        import subprocess
+        parent_dir = Path(__file__).parent.parent
+        api_path = parent_dir / "api_server.py"
+        if api_path.exists():
+            subprocess.Popen(
+                [sys.executable, str(api_path)],
+                cwd=str(parent_dir),
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+            time.sleep(5)  # Give the backend 5 seconds to load models into memory
 
 st.set_page_config(page_title="DEEPFAKE.AI", page_icon="🔬", layout="wide", initial_sidebar_state="collapsed")
 
