@@ -20,12 +20,17 @@ if "localhost" in API_URL or "127.0.0.1" in API_URL:
         parent_dir = Path(__file__).parent.parent
         api_path = parent_dir / "api_server.py"
         if api_path.exists():
-            subprocess.Popen(
-                [sys.executable, str(api_path)],
-                cwd=str(parent_dir),
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
+            log_path = parent_dir / "api_startup.log"
+            try:
+                log_file = open(log_path, "w")
+                subprocess.Popen(
+                    [sys.executable, str(api_path)],
+                    cwd=str(parent_dir),
+                    stdout=log_file,
+                    stderr=log_file
+                )
+            except Exception as e:
+                st.error(f"Failed to launch backend subprocess: {e}")
             time.sleep(5)  # Give the backend 5 seconds to load models into memory
 
 st.set_page_config(page_title="DEEPFAKE.AI", page_icon="🔬", layout="wide", initial_sidebar_state="collapsed")
@@ -271,7 +276,20 @@ if uploaded:
                 resp = requests.post(f"{API_BASE}/detect", files=files, timeout=120)
                 result = resp.json()
             except requests.exceptions.ConnectionError:
-                st.error("⚠️ API server is still starting up. Please wait 5 seconds and retry.")
+                # Read the api_startup.log file and display it to help debug
+                log_path = Path(__file__).parent.parent / "api_startup.log"
+                log_content = ""
+                if log_path.exists():
+                    try:
+                        with open(log_path, "r") as lf:
+                            log_content = lf.read()
+                    except Exception:
+                        pass
+                st.error("⚠️ API server is offline or failed to start. Please check the logs below:")
+                if log_content:
+                    st.code(log_content, language="text")
+                else:
+                    st.info("No log contents found yet. Wait a few seconds and retry.")
                 st.stop()
             except Exception as e:
                 st.error(f"Error: {e}")
