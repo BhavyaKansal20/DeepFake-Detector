@@ -11,6 +11,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from PIL import Image as PILImage
 import uvicorn
+from facenet_pytorch import MTCNN
 
 app = FastAPI(title="Deepfake Detector API")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
@@ -63,7 +64,13 @@ with open('models/audio_model/feature_scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 print("✅ Audio model loaded          (99.6% acc)")
 
-IMG_TF = A.Compose([A.Resize(224,224), A.Normalize(mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225]), ToTensorV2()])
+# Initialize MTCNN for face cropping
+face_detector = MTCNN(
+    image_size=299, margin=40, min_face_size=80,
+    device=device, keep_all=False
+)
+
+IMG_TF = A.Compose([A.Resize(299,299), A.Normalize(mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225]), ToTensorV2()])
 IMAGE_EXTS = {'.jpg','.jpeg','.png','.webp','.bmp'}
 AUDIO_EXTS = {'.wav','.mp3','.flac','.m4a','.ogg'}
 VIDEO_EXTS = {'.mp4','.avi','.mov','.mkv','.webm'}
@@ -123,7 +130,20 @@ async def detect_video_ep(file: UploadFile = File(...)):
     finally: os.unlink(tmp)
 
 def _image_fake_probability_from_rgb(rgb_image, with_components=False):
-    tensor = IMG_TF(image=rgb_image)['image'].unsqueeze(0).to(device)
+    pil_img = PILImage.fromarray(rgb_image)
+    face_detected = False
+    try:
+        face_tensor = face_detector(pil_img)
+        if face_tensor is not None:
+            face_np = face_tensor.permute(1, 2, 0).numpy()
+            face_np = ((face_np * 0.5 + 0.5) * 255).clip(0, 255).astype(np.uint8)
+            tensor = IMG_TF(image=face_np)['image'].unsqueeze(0).to(device)
+            face_detected = True
+    except Exception:
+        pass
+
+    if not face_detected:
+        tensor = IMG_TF(image=rgb_image)['image'].unsqueeze(0).to(device)
 
     with torch.no_grad():
         p1 = F.softmax(faceswap_model(tensor), dim=-1).cpu().numpy()[0]
